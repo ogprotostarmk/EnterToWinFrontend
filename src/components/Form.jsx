@@ -4,7 +4,8 @@ import ReCAPTCHA  from "react-google-recaptcha";
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 
-const Form = () => {
+const Form = ({team}) => {
+    console.log(team)
     const [captcha, setCatpcha] = useState(null);
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
@@ -35,7 +36,7 @@ const Form = () => {
 
         try {
             await toast.promise(
-              axios.post(`https://api.playfuninc.org/api/v1/form/register`, {...body, team:"saints"}),
+              axios.post(`https://api.playfuninc.org/api/v1/form/register`, {...body, team:team}),
               {
                 loading: 'Loading',
                 success: 'Sent!',
@@ -50,7 +51,7 @@ const Form = () => {
     }
    
   return (
-        <div className="lg:w-[1024px] m-auto flex flex-col text-white items-start sm:items-center">
+        <div className={`lg:w-[1024px] m-auto flex flex-col items-start sm:items-center ${team === "saints" ? "text-black" : "text-white"}`}>
             <div className="lg:flex-row lg:flex-wrap flex flex-col justify-start w-full">
                 <div className='lg:mb-[30px] flex flex-col my-[25px] relative'>
                     <label htmlFor="name" className='mb-[5px] font-[700] flex flex-row items-center absolute left-0 top-[-35px]'>Name <span className='text-[red] text-[20px] font-[700]'>*</span></label>
@@ -94,7 +95,7 @@ const Form = () => {
             </div>
 
             <div className="flex flex-col gap-3 self-start">
-                <p className='mt-[25px] text-white text-[18px] font-[600]'>Choose as many as you would like to be entered to win. <span className='text-[red] font-[700] text-[20px]'>*</span></p>
+                <p className={`mt-[25px] text-[18px] font-[600] ${team === "saints" ? "text-black font-[700]" : "text-white"}`}>Choose as many as you would like to be entered to win. <span className='text-[red] font-[700] text-[20px]'>*</span></p>
                 <div className='flex flex-row items-center'>
                     <input type="checkbox" id="home game" name="Home Game Tickets" value="Home Game Tickets" onClick={(e) => {
                         if(rewards.includes(e.target.value)){
@@ -103,7 +104,7 @@ const Form = () => {
                         } else{
                             setRewards([...rewards, e.target.value])
                         }
-                    }} className='sm:w-[20px] sm:h-[20px]'/> <p className='sm:text-[20px] ml-[5px] text-[16px]'>Home Game Tickets (Est. value $500 - $800)</p>
+                    }} className='sm:w-[20px] sm:h-[20px]'/> <p className={`sm:text-[20px] ml-[5px] text-[16px] ${team === "saints" ? "font-[600]" : ""}`}>Home Game Tickets (Est. value $500 - $800)</p>
                 </div>
                 <div className='flex flex-row items-center'>
                     <input type="checkbox" id="Signed Merchandise" name="Signed Merchandise" value="Signed Merchandise" onClick={(e) => {
@@ -113,7 +114,7 @@ const Form = () => {
                         } else{
                             setRewards([...rewards, e.target.value])
                         }
-                    }} className='sm:w-[20px] sm:h-[20px]'/> <p className='sm:text-[20px] ml-[5px] text-[16px]'>Signed Merchandise (Est. value $500)</p>
+                    }} className='sm:w-[20px] sm:h-[20px]'/> <p className={`sm:text-[20px] ml-[5px] text-[16px] ${team === "saints" ? "font-[600]" : ""}`}>Signed Merchandise (Est. value $500)</p>
                 </div>
                 <div className='flex flex-row items-center'>
                     <input type="checkbox" id="Swag Prize Package" name="Swag Prize Package" value="Swag Prize Package" onClick={(e) => {
@@ -123,7 +124,7 @@ const Form = () => {
                         } else{
                             setRewards([...rewards, e.target.value])
                         }
-                    }} className='sm:w-[20px] sm:h-[20px]'/> <p className='sm:text-[20px] ml-[5px] text-[16px]'>Swag Prize Package (Est. value $300)</p>
+                    }} className='sm:w-[20px] sm:h-[20px]'/> <p className={`sm:text-[20px] ml-[5px] text-[16px] ${team === "saints" ? "font-[600]" : ""}`}>Swag Prize Package (Est. value $300)</p>
                 </div>
                 <div className='flex flex-row items-center'>
                     <input type="checkbox" id="All Options" name="All Options" value="All Options" onClick={(e) => {
@@ -133,7 +134,7 @@ const Form = () => {
                         } else{
                             setRewards([...rewards, e.target.value])
                         }
-                    }} className='sm:w-[20px] sm:h-[20px]'/> <p className='sm:text-[20px] ml-[5px] text-[16px]'>Check this box to enter me in all options.</p>
+                    }} className='sm:w-[20px] sm:h-[20px]'/> <p className={`sm:text-[20px] ml-[5px] text-[16px] ${team === "saints" ? "font-[600]" : ""}`}>Check this box to enter me in all options.</p>
                 </div>
                 {/* <p className="text-default-500 text-small">Selected: {rewards.join(", ")}</p> */}
             </div>
@@ -145,7 +146,7 @@ const Form = () => {
                     className={`px-[20px] py-[15px] w-[200px] border border-black rounded-[50px] bg-black text-white lg:self-start mt-[30px] self-center ${!isValid || isSent ? " opacity-50 cursor-not-allowed" : ""}`}
                     onClick={handleOnSubmit}
                     >Submit</button>
-            <a href='https://www.americascardroom.net/terms-and-conditions/' target='_blank' className='lg:text-[20px] mt-[50px] mb-[40px] self-center underline'>Click to visit terms and conditions</a>
+            <a href='https://www.americascardroom.net/terms-and-conditions/' target='_blank' className='lg:text-[20px] mt-[50px] mb-[40px] self-center underline font-[700]'>Click to visit terms and conditions</a>
             <div><Toaster/></div>
         </div>
   )
