@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
-import Selectable from './Selectable';
 import ReCAPTCHA  from "react-google-recaptcha";
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 
-const Form = ({team}) => {
-    console.log(team)
+const Form = ({team, code}) => {
     const [captcha, setCatpcha] = useState(null);
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
@@ -31,12 +29,15 @@ const Form = ({team}) => {
             name: name,
             phone: phone,
             email: email,
+            team: team,
+            code: code,
             reward: rewards.length === 1 ? rewards[0] : rewards.join(",")
         }
 
         try {
             await toast.promise(
-              axios.post(`https://api.playfuninc.org/api/v1/form/register`, {...body, team:team}),
+            //   axios.post(`https://api.playfuninc.org/api/v1/form/register`, {...body, team:team}),
+              axios.post(`http://localhost:3977/api/v1/form/register`, body),
               {
                 loading: 'Loading',
                 success: 'Sent!',
