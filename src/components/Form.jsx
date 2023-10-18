@@ -36,8 +36,8 @@ const Form = ({team, code}) => {
 
         try {
             await toast.promise(
-            //   axios.post(`https://api.playfuninc.org/api/v1/form/register`, {...body, team:team}),
-              axios.post(`http://localhost:3977/api/v1/form/register`, body),
+              axios.post(`https://api.playfuninc.org/api/v1/form/register`, body),
+            //   axios.post(`http://localhost:3977/api/v1/form/register`, body),
               {
                 loading: 'Loading',
                 success: 'Sent!',
