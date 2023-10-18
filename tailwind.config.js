@@ -10,6 +10,7 @@ module.exports = {
       backgroundImage: {
           'ramsBackground': "url('/rams/backgroundImage.jpeg')",
           'saintsBackground': "url('/saints/backgroundImage.jpg')",
+          'jaguarsBackground': "url('/jaguars/backgroundImage.jpg')",
       },
     },
   },

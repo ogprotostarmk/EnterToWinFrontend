@@ -6,7 +6,6 @@ import Image from "next/image";
 import Head from 'next/head';
 
 const saintsFormSOC= () => {
-  console.log("SAINTS")
   return (
     <>
     <Head>
