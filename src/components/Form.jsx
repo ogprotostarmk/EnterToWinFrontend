@@ -35,6 +35,7 @@ const Form = ({team, code}) => {
         }
 
         try {
+            setIsSent(true);
             await toast.promise(
               axios.post(`https://api.playfuninc.org/api/v1/form/register`, body),
             //   axios.post(`http://localhost:3977/api/v1/form/register`, body),
@@ -44,9 +45,12 @@ const Form = ({team, code}) => {
                 error: 'An error occurred!',
               }
             );
-            setIsSent(true)
+            setTimeout(() => {
+                setIsSent(false);
+            }, 3000);
           } catch (error) {
             console.error(error);
+            setIsSent(false)
           }
 
     }
