@@ -12,6 +12,9 @@ module.exports = {
           'saintsBackground': "url('/saints/backgroundImage.jpg')",
           'jaguarsBackground': "url('/jaguars/backgroundImage.jpg')",
       },
+      screens: {
+        's-agreement': '386px', // Define un media query personalizado
+      },
     },
   },
   plugins: [],

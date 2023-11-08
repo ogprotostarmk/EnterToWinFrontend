@@ -9,6 +9,7 @@ const Form = ({team, code}) => {
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
     const [rewards, setRewards] = useState([]);
+    const [isAgreementChecked, setIsAgreementChecked] = useState(false);
     const [isSent, setIsSent] = useState(false);
 
     const [fieldsStatus, setFieldsStatus] = useState({
@@ -20,8 +21,13 @@ const Form = ({team, code}) => {
     const isValid = fieldsStatus.name &&
                     fieldsStatus.phone &&
                     fieldsStatus.email &&
+                    isAgreementChecked &&
                     rewards.length !== 0 && 
                     captcha ? true : false;
+
+    const handleAgreementChange = () => {
+        setIsAgreementChecked(!isAgreementChecked);
+    };
 
     const handleOnSubmit = async (e) => {
         e.preventDefault();
@@ -146,12 +152,21 @@ const Form = ({team, code}) => {
             <div className='lg:self-start mt-[25px] self-center'>
                 <ReCAPTCHA sitekey='6LeD_pcoAAAAAHRJyaaztK9CnOcorApTh7vVjMVf' onChange={setCatpcha}/>
             </div>
+            <div className='s-agreement:h-[80px] flex flex-row items-start self-start mt-[30px] w-full h-[100px]'>
+                <div className='h-full flex items-start mt-[5px] mr-2'>
+                    <input type="checkbox" id="agreement" name="agreement" checked={isAgreementChecked} onChange={handleAgreementChange} className='sm:w-[20px] sm:h-[20px] w-[22px] h-[22px]' /> 
+                </div>
+                <div className='h-full'>
+                    <p className={`sm:text-[20px] ml-[5px] text-[16px] ${team === "saints" || team === "jaguars" ? "font-[600]" : ""}`}>
+                        By clicking this box you agree to the <a href='https://www.americascardroom.net/terms-and-conditions/' target='_blank' className='lg:text-[20px] self-center underline font-[500]'>terms and conditions</a> and <a href='https://www.playfuninc.com/privacy-policy/' target='_blank' className='lg:text-[20px] self-center underline font-[500]'>privacy policy</a> of playfun Inc Dba: Americascardroom.net
+                    </p>
+                </div>
+            </div>
             <button 
                     disabled={!isValid || isSent} 
-                    className={`px-[20px] py-[15px] w-[200px] border border-black rounded-[50px] bg-black text-white lg:self-start mt-[30px] self-center ${!isValid || isSent ? " opacity-50 cursor-not-allowed" : ""}`}
+                    className={`px-[20px] py-[15px] w-[200px] border border-black rounded-[50px] bg-black text-white lg:self-start mt-[30px] self-center mb-[40px] ${!isValid || isSent ? " opacity-50 cursor-not-allowed" : ""}`}
                     onClick={handleOnSubmit}
                     >Submit</button>
-            <a href='https://www.americascardroom.net/terms-and-conditions/' target='_blank' className='lg:text-[20px] mt-[50px] mb-[40px] self-center underline font-[700]'>Click to visit terms and conditions</a>
             <div><Toaster/></div>
         </div>
   )
