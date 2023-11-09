@@ -51,9 +51,9 @@ const Form = ({team, code}) => {
                 error: 'An error occurred!',
               }
             );
-            setTimeout(() => {
-                setIsSent(false);
-            }, 3000);
+            // setTimeout(() => {
+            //     setIsSent(false);
+            // }, 3000);
           } catch (error) {
             console.error(error);
             setIsSent(false)
@@ -158,7 +158,7 @@ const Form = ({team, code}) => {
                 </div>
                 <div className='h-full'>
                     <p className={`sm:text-[20px] ml-[5px] text-[16px] ${team === "saints" || team === "jaguars" ? "font-[600]" : ""}`}>
-                        By clicking this box you agree to the <a href='https://www.americascardroom.net/terms-and-conditions/' target='_blank' className='lg:text-[20px] self-center underline font-[500]'>terms and conditions</a> and <a href='https://www.playfuninc.com/privacy-policy/' target='_blank' className='lg:text-[20px] self-center underline font-[500]'>privacy policy</a> of playfun Inc Dba: Americascardroom.net
+                        By clicking this box you agree to the {team === "rams" && <a href='https://www.playfuninc.org/rams-OfficialContestRules/' target='_blank' className='lg:text-[20px] self-center underline font-[500]'>official contest rules</a>}, <a href='https://www.americascardroom.net/terms-and-conditions/' target='_blank' className='lg:text-[20px] self-center underline font-[500]'>terms and conditions</a>, and <a href='https://www.playfuninc.com/privacy-policy/' target='_blank' className='lg:text-[20px] self-center underline font-[500]'>privacy policy</a> of playfun Inc Dba: Americascardroom.net
                     </p>
                 </div>
             </div>

@@ -1,5 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  webpack: (config) => {
+    config.resolve.alias.canvas = false;
+    
+       return config;
+     },
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -14,6 +19,7 @@ module.exports = {
       },
       screens: {
         's-agreement': '386px', // Define un media query personalizado
+        'pg-size': '1000px', // Define un media query personalizado
       },
     },
   },
